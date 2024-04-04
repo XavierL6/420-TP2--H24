@@ -8,6 +8,7 @@ public class Zoo {
     public Zoo(String nom){
         this.nom = nom;
     }
+    public String getNom(){return nom;}
     public boolean ajouterEnclos(Enclos[] lesEnclos){}
     public Visiteur retirerVisiteur(){}
     public void arriveeVisiteur(Visiteur visiteur){}

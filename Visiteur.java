@@ -8,4 +8,20 @@ public class Visiteur {
         this.age = age;
         this.especes = especes;
     }
+    public String[] getEspeces(){return especes;}
+    public void entrerDansZoo(Zoo zoo){
+    System.out.println("[" + nom + ", " + age + "]" + "entre dans le zoo '" + zoo.getNom() + "'.");
+    }
+    public void entrerDansEnclo(Enclos enclo){
+        System.out.println("[" + nom + ", " + age + "]" + "entre dans l'enclos" + "'" + enclo.getNom() + "'.");
+    }
+    public void quitterZoo(){
+        System.out.println("[" + nom + ", " + age + "]" + "quitte le zoo.");
+    }
+    public void quitterEnclo(){
+        System.out.println("[" + nom + ", " + age + "]" + "quitte l'enclos.");
+    }
+    public String toString(){
+        return "[" + nom + ", " + age + "]";
+    }
 }
