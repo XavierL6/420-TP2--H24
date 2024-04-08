@@ -6,7 +6,10 @@ public class Visiteur {
     public Visiteur(String nom, int age, String[] especes){
         this.nom = nom;
         this.age = age;
-        this.especes = especes;
+        especes = new String[especes.length];
+        for(int i = 0 ; i < especes.length; i++){
+            this.especes[i] = especes[i];
+        }
     }
     public String[] getEspeces(){return especes;}
     public void entrerDansZoo(Zoo zoo){

@@ -1,6 +1,6 @@
 public class Noeud {
     private Visiteur valeur;
-    private Noeud suivant;
+    public Noeud suivant;
     public Noeud (Visiteur valeur){
         this.valeur = valeur;
         suivant = null;
@@ -10,5 +10,8 @@ public class Noeud {
     public void setProchain (Noeud prochain){
         suivant = prochain;
     }
-    public String toString(){}
+    public Visiteur getValeur(){return valeur;}
+    public String toString(){
+        return valeur + "->";
+    }
 }

@@ -97,7 +97,7 @@ public class Main {
                         System.out.println("\tNouveau besoin alimentaire: " + String.format("%.1f", animal.getBesoinAlimentaire()));
                     }
                 }
-                visiteur.quitterEnclo(entree.getEnclos()[i]);
+                visiteur.quitterEnclo();
             }
             visiteur.quitterZoo();
         }

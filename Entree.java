@@ -5,6 +5,7 @@ public class Entree {
     private Enclos[] lesEnclos;
     private int prix;
     public Entree(Visiteur visiteur, Zoo zoo){
+
     }
     public double getPrix(){return prix;}
     public int getNombreEnclos(){return nombreEnclos;}

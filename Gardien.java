@@ -17,6 +17,7 @@ public class Gardien {
             animal.setPoids((animal.getPoids() * 0.95));
         }
     }
+    public int getCompetence(){return competence;}
     public String toString(){
         return "[" + nom + " (" + id + "), " + competence + "]";
     }
