@@ -14,12 +14,10 @@ public class Enclos {
     public Gardien getGardien(){return gardien;}
     public Veterinaire getVeterinaire(){return veterianire;}
     public void ajouterAnimaux(Animal[] lesAnimaux){
+        this.lesAnimaux = new Animal[lesAnimaux.length];
         for(int i = 0; i < lesAnimaux.length; i++){
-            for(int x = 0; x < this.lesAnimaux.length; x++){
-                if(this.lesAnimaux[x] == null){
-                    this.lesAnimaux[x] = lesAnimaux[i];
-                }
-            }
+                    this.lesAnimaux[i] = lesAnimaux[i];
+                        nombreAnimaux++;
         }
     }
     public int getNombreAnimaux() {return nombreAnimaux;}
@@ -29,6 +27,6 @@ public class Enclos {
     public String toString(){
         return "L'enclos '" + nom + "' est peuple avec " + nombreAnimaux + ". Sa capacite est de " +
                 capaciteMax + " animaux. Le veterinaire assigne est " + veterianire + ". Le gardien actuel est " + gardien
-                + ". \nLes animaux dans cet enclos: "; // a finir
+                + ". \nLes animaux dans cet enclos: \n" + lesAnimaux[0] + "\n" + lesAnimaux[1];
     }
 }

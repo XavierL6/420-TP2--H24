@@ -3,14 +3,15 @@ import java.util.Arrays;
 public class Zoo {
     private String nom;
     private int nombreEnclos;
-    private Pile pileGardiens;
-    private File fileVisiteurs;
+    private Pile pileGardiens = new Pile();
+    private File fileVisiteurs = new File();
     private Enclos[] lesEnclos = new Enclos[5];
     private int nombreTotalAnimaux;
     public Zoo(String nom){
         this.nom = nom;
     }
     public String getNom(){return nom;}
+    public Enclos[] getEnclos(){return lesEnclos;}
     public boolean ajouterEnclos(Enclos[] lesEnclos){
         int scoreCompetence = 0;
         for (int i = 0; i < lesEnclos.length; i++) {
@@ -20,6 +21,7 @@ public class Zoo {
             for (int i = 0; i < lesEnclos.length; i++) {
                 this.lesEnclos[i] = lesEnclos[i];
                 this.nombreTotalAnimaux += lesEnclos[i].getNombreAnimaux();
+                nombreEnclos++;
             }
             return true;
         }
@@ -27,10 +29,13 @@ public class Zoo {
         return false;
     }
     public Visiteur retirerVisiteur(){
-        fileVisiteurs.supprimerAuDebut();
-        return fileVisiteurs.getPremier().getVisiteur();
+        int verif = fileVisiteurs.supprimerAuDebut();
+        if(verif != 0) {
+            return fileVisiteurs.getPremier().getVisiteur();
+        }
+        return null;
     }
-    public void arriveeVisiteur(Visiteur visiteur){
+    public void arriveeVisiteur(Visiteur visiteur){ //probleme ici
         if(fileVisiteurs.getNbElements() != 0) {
             if (visiteur.getAge() >= 65) {
                 for (int i = 0; i < fileVisiteurs.getNbElements(); i++) {
@@ -50,38 +55,46 @@ public class Zoo {
         Enclos enclosChoisi;
         pileGardiens.ajouter(gardien);
         for(int i = 0; i < lesEnclos.length; i++){
-            if(lesEnclos[i].getGardien() == null){
-                enclosLibres[x] = lesEnclos[i];
-                x++;
+            if(lesEnclos[i] != null) {
+                if (lesEnclos[i].getGardien() == null) {
+                    enclosLibres[x] = lesEnclos[i];
+                    x++;
+                }
             }
         }
-        enclosChoisi = enclosLibres[0];
-        for (int i = 0; i < enclosLibres.length; i++){
-            if(enclosLibres[i].getNombreAnimaux() > enclosLibres[i + 1].getNombreAnimaux()){
-                enclosChoisi = enclosLibres[i + 1];
+        if(enclosLibres[0] != null) {
+            enclosChoisi = enclosLibres[0];
+            for (int i = 0; i < enclosLibres.length; i++) {
+                if (enclosLibres[i].getNombreAnimaux() > enclosLibres[i + 1].getNombreAnimaux()) {
+                    enclosChoisi = enclosLibres[i + 1];
+                }
             }
+            enclosChoisi.setGardien(gardien);
         }
-        enclosChoisi.setGardien(gardien);
     }
     public Gardien retirerGardien() {
         Gardien g = pileGardiens.getDernierGardien();
         boolean verifGardienActif = false;
-            for(int i = 0; i < lesEnclos.length; i++){
-                if(g == lesEnclos[i].getGardien()){
+        if (g != null) {
+            for (int i = 0; i < lesEnclos.length; i++) {
+                if (g == lesEnclos[i].getGardien()) {
                     verifGardienActif = true;
                 }
             }
-             if ((g.getCompetence() - pileGardiens.pointCompetence()) < 20 || verifGardienActif) {
-            System.out.println("On ne peut enlever le gardien" + g);
+            if ((g.getCompetence() - pileGardiens.pointCompetence()) < 20 || verifGardienActif) {
+                System.out.println("On ne peut enlever le gardien" + g);
+                return g;
+            }
+            pileGardiens.retirerDernier();
+            System.out.println("On retire le dernier gardien arrive au zoo: " + g + "a ete retire");
             return g;
         }
-        pileGardiens.retirerDernier();
-             System.out.println("On retire le dernier gardien arrive au zoo: " + g + "a ete retire");
-                 return g;
+        System.out.println("il n'y a pas de gardien dans la pile");
+        return g;
     }
     public String toString(){
-        return "voici la pile des gardiens:\n" + pileGardiens + "et la file des visiteurs:\n" + fileVisiteurs + "Le zoo est peuple avec" + nombreTotalAnimaux +
-                "animaux. Il y a " + nombreEnclos + " enclos." + lesEnclos; }
+        return "voici la pile des gardiens:\n" + pileGardiens + "\n et la file des visiteurs:\n" + fileVisiteurs + "Le zoo est peuple avec " + nombreTotalAnimaux +
+                " animaux. Il y a " + nombreEnclos + " enclos." + lesEnclos[0] + "\n" + lesEnclos[1] + "\n" + lesEnclos[2] + "\n" + lesEnclos[3] + "\n" + lesEnclos[4]; }
 
     public File getFileVisiteurs() {return fileVisiteurs;}
 }

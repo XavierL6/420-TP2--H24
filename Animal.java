@@ -14,27 +14,29 @@ public class Animal {
         this.poids = poids;
         this.classe = classe;
         this.espece = espece;
+        this.besoinAlimentaire = calculBesoinAlimentaire();
     }
     public String getEspece(){return espece;}
-    public void calculBesoinAlimentaire(){
+    public double calculBesoinAlimentaire(){
+        double besoinAlimentaire = 0;
         if(regimeAlimentaire.equals("carnivore")){
-            this.besoinAlimentaire = poids * 0.05;
+            besoinAlimentaire = poids * 0.05;
         }
         else if (regimeAlimentaire.equals("herbivore")) {
-            this.besoinAlimentaire = poids * 0.03;
+            besoinAlimentaire = poids * 0.03;
         }
         else if (regimeAlimentaire.equals("omnivore")) {
-            this.besoinAlimentaire = poids * 0.02;
+            besoinAlimentaire = poids * 0.02;
         }
         else if (regimeAlimentaire.equals("piscivore")){
-            this.besoinAlimentaire = poids * 0.01;
+            besoinAlimentaire = poids * 0.01;
         }
-
+        return besoinAlimentaire;
     }
     public double getPoids(){return poids;}
     public void setPoids(double poid){this.poids = poid;}
     public double getBesoinAlimentaire(){return besoinAlimentaire;}
     public String toString(){
-        return "le " + espece + " nomme " + nom + " pese " + poids + " kg et son besoin alimentaire " + regimeAlimentaire + " de " + besoinAlimentaire + " kg.";
+        return " le " + espece + " nomme " + nom + " pese " + poids + " kg et son besoin alimentaire " + regimeAlimentaire + " de " + besoinAlimentaire + " kg.";
     }
 }
