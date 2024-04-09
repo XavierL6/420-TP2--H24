@@ -12,6 +12,7 @@ public class Visiteur {
         }
     }
     public String[] getEspeces(){return especes;}
+    public int getAge(){return age;}
     public void entrerDansZoo(Zoo zoo){
     System.out.println("[" + nom + ", " + age + "]" + "entre dans le zoo '" + zoo.getNom() + "'.");
     }

@@ -49,6 +49,28 @@ public class File {
         }
         return --nbElements;
     }
+    public int insererAuMilieu(int index, Visiteur v) {
+        if (index == 0)
+            return insererAuDebut(v);
+        else if (index == nbElements)
+            return insererALaFin(v);
+        Noeud avant = getNoeud(index - 1);
+        if (avant == null)
+            return 0;
+        Noeud apres = avant.suivant;
+        Noeud nouveau = new Noeud(v);
+        avant.setProchain(nouveau);
+        nouveau.setProchain(apres);
+        return ++nbElements;
+    }
+    public int insererAuDebut(Visiteur v) {
+        Noeud nouv = new Noeud(v);
+        nouv.setProchain(premier);
+        premier = nouv;
+        return ++nbElements;
+    }
+    public Noeud getPremier(){return premier;}
+    public int getNbElements(){return nbElements;}
     public String toString(){
         return nbElements + " Visiteurs: " ;
     }

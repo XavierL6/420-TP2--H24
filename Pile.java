@@ -44,5 +44,17 @@ public class Pile {
         }
     return -1;
     }
-    public String toString(){}
+    public String toString(){
+        System.out.print(nbElements + " visiteurs: ");
+        for(int i = 0; i < lesGardiens.length; i++){
+            if(lesGardiens[i] != null){
+                System.out.print(lesGardiens[i] + " -> ");
+            }
+            else {
+                System.out.print("[null]");
+                break;
+            }
+        }
+        return "";
+    }
 }
